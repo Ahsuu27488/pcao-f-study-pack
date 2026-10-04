@@ -5,8 +5,8 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <meta name="description" content="PCAO-F study pack: all seven domains, the ten official crash courses, flashcards, and three timed 60-question mock tests. English, Roman Urdu and Urdu.">
 <meta name="color-scheme" content="light dark">
-<meta name="theme-color" content="#F3F6F9" media="(prefers-color-scheme: light)">
-<meta name="theme-color" content="#0C131B" media="(prefers-color-scheme: dark)">
+<meta name="theme-color" content="#F3F6F9" media="(prefers-color-scheme: light)" data-tc="light">
+<meta name="theme-color" content="#0C131B" media="(prefers-color-scheme: dark)" data-tc="dark">
 <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg%20xmlns%3D'http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg'%20viewBox%3D'0%200%2032%2032'%3E%3Crect%20width%3D'32'%20height%3D'32'%20rx%3D'7'%20fill%3D'%231B5FB0'%2F%3E%3Cpath%20d%3D'M9%2016.9l4.7%204.7L23.3%2011'%20fill%3D'none'%20stroke%3D'%23fff'%20stroke-width%3D'3'%20stroke-linecap%3D'round'%20stroke-linejoin%3D'round'%2F%3E%3C%2Fsvg%3E">
 <meta property="og:type" content="website">
 <meta property="og:title" content="PCAO-F Study Pack">
@@ -99,7 +99,7 @@ body{
 .wrap{max-width:880px;margin-inline:auto;min-width:0}
 .prose{max-width:68ch}
 h1,h2,h3{font-family:var(--font-display);font-weight:600;text-wrap:balance;margin:0;line-height:1.25}
-h1{font-size:clamp(1.6rem,4.2vw,2.2rem);letter-spacing:-.01em}
+h1{font-size:clamp(1.35rem,6.6vw,2.2rem);letter-spacing:-.015em}
 h2{font-size:clamp(1.2rem,2.9vw,1.5rem)}
 h3{font-size:1.04rem}
 p{margin:0}
@@ -128,13 +128,26 @@ a:focus-visible,button:focus-visible,input:focus-visible{outline:2px solid var(-
   .masthead{padding-block:24px 16px;gap:14px}
   .mark{width:40px;height:40px;border-radius:11px}
   .mark svg{width:23px;height:23px}
-  .langbar .mchip{margin-inline-start:0}
+  .brand{gap:12px}
+  .brandtext .eyebrow{font-size:.61rem;letter-spacing:.08em;line-height:1.5}
+  .masthead .lede{font-size:.92rem;max-width:46ch}
 }
 .eyebrow{font-family:var(--font-mono);font-size:.7rem;text-transform:uppercase;letter-spacing:.13em;color:var(--muted)}
 .masthead .lede{color:var(--muted);font-size:.98rem;max-width:62ch}
 .rule{height:1px;background:var(--line);border:0;margin:0}
 
 .langbar{display:flex;align-items:center;gap:10px;flex-wrap:wrap}
+
+
+.seg.iconseg button{padding:5px 9px;display:inline-flex;align-items:center;justify-content:center;line-height:1}
+.seg.iconseg svg{width:15px;height:15px;display:block;fill:none;stroke:currentColor;stroke-width:1.7;stroke-linecap:round;stroke-linejoin:round}
+.seg.iconseg button[aria-pressed="true"] svg{stroke-width:1.9}
+@media(max-width:600px){
+  .langbar{gap:8px}
+  .seg.iconseg button{padding:6px 10px}
+  .langbar .mchip{margin-inline-start:auto}
+}
+
 .langbar .lb-label{font-family:var(--font-mono);font-size:.68rem;text-transform:uppercase;letter-spacing:.11em;color:var(--muted)}
 .seg{display:inline-flex;border:1px solid var(--line-strong);border-radius:20px;overflow:hidden;background:var(--surface)}
 .seg button{
@@ -166,8 +179,13 @@ section[data-panel][hidden]{display:none}
 .sectionhead{display:flex;flex-direction:column;gap:6px;padding-top:6px}
 .sectionhead p{color:var(--muted);font-size:.92rem;max-width:66ch}
 
-.facts{display:grid;grid-template-columns:repeat(auto-fit,minmax(128px,1fr));gap:1px;background:var(--line);border:1px solid var(--line);border-radius:var(--radius);overflow:hidden}
-.fact{background:var(--surface);padding:14px 16px;display:flex;flex-direction:column;gap:3px;min-width:0}
+.facts{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:1px;background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);overflow:hidden}
+.fact:last-child{grid-column:1/-1}
+@media(min-width:640px){
+  .facts{grid-template-columns:repeat(5,minmax(0,1fr))}
+  .fact:last-child{grid-column:auto}
+}
+.fact{background:var(--surface);box-shadow:0 0 0 1px var(--line);padding:14px 16px;display:flex;flex-direction:column;gap:3px;min-width:0}
 .fact dt{font-family:var(--font-mono);font-size:.65rem;text-transform:uppercase;letter-spacing:.1em;color:var(--muted)}
 .fact dd{margin:0;font-family:var(--font-display);font-size:1.18rem;font-weight:600;font-variant-numeric:tabular-nums;line-height:1.2}
 .fact dd small{display:block;font-family:var(--font-body);font-size:.75rem;font-weight:400;color:var(--muted);margin-top:2px}
@@ -239,7 +257,9 @@ section[data-panel][hidden]{display:none}
 .fc-progress{font-family:var(--font-mono);font-size:.75rem;color:var(--muted)}
 
 /* ---------- quiz ---------- */
-.quizctl{display:flex;flex-wrap:wrap;gap:10px 16px;align-items:center;padding:12px 16px;border:1px solid var(--line);border-radius:8px;background:var(--surface)}
+.quizctl{display:flex;flex-wrap:wrap;gap:14px 22px;align-items:flex-end;padding:14px 16px;border:1px solid var(--line);border-radius:8px;background:var(--surface)}
+.qgroup{display:flex;flex-direction:column;gap:6px;min-width:0}
+.qzbar{align-items:center}
 .quizctl .cl{font-family:var(--font-mono);font-size:.66rem;text-transform:uppercase;letter-spacing:.1em;color:var(--muted)}
 .stat{font-family:var(--font-mono);font-size:.78rem;font-variant-numeric:tabular-nums;color:var(--muted)}
 .stat b{color:var(--fg);font-weight:500}
@@ -348,13 +368,42 @@ img,svg,video{max-width:100%}
   border-radius:99px;padding:1px 8px;margin-top:2px;font-variant-numeric:tabular-nums}
 /* --- phones: seven tabs will not fit on one line, and a hidden Quiz tab is
        a hidden Quiz tab. Wrap them into pills so all seven stay reachable. --- */
+
+/* --- phones: the tab strip becomes a bottom bar --- */
+.bottombar{display:none}
 @media(max-width:600px){
-  .tabs{flex-wrap:wrap;overflow-x:visible;border-bottom:0;gap:5px;padding-bottom:4px}
-  .tabs button{border:1px solid var(--line);border-radius:99px;background:var(--surface);
-    padding:7px 12px;font-size:.8rem}
-  .tabs button:hover{background:var(--surface-2)}
-  .tabs button[aria-selected="true"]{border-color:var(--accent);background:var(--accent-soft);
-    color:var(--accent-ink)}
+  .tabrail{display:none}
+  body{padding-block:0 calc(80px + env(safe-area-inset-bottom,0px))}
+  .mockhead{top:env(safe-area-inset-top,0px)}
+  .bottombar{
+    position:fixed;inset-inline:0;bottom:0;z-index:40;display:flex;
+    background:var(--surface);border-top:1px solid var(--line);
+    box-shadow:0 -1px 2px rgba(0,0,0,.05);
+    padding-bottom:env(safe-area-inset-bottom,0px);
+  }
+  .bottombar button{
+    appearance:none;flex:1 1 0;min-width:0;background:none;border:0;cursor:pointer;
+    display:flex;flex-direction:column;align-items:center;gap:3px;
+    padding:9px 1px 8px;color:var(--muted);
+    font-family:inherit;font-size:.6rem;font-weight:500;letter-spacing:0;
+    transition:color .13s ease;
+  }
+  .bottombar button span{overflow:hidden;text-overflow:ellipsis;white-space:nowrap;max-width:100%}
+  .bottombar button svg{width:20px;height:20px;fill:none;stroke:currentColor;
+    stroke-width:1.7;stroke-linecap:round;stroke-linejoin:round}
+  .bottombar button[aria-current="true"]{color:var(--accent)}
+  /* the two grouping controls stack and fill the width */
+  .quizctl{flex-direction:column;align-items:stretch;gap:14px}
+  .qgroup .seg{display:flex;width:100%}
+  .qgroup .seg button{flex:1 1 0;padding-inline:6px;text-align:center}
+  .qzbar{align-items:center;gap:8px 14px}
+  .qzbar .spacer{margin-inline-start:0;width:100%}
+}
+/* phone overrides, last so they win */
+@media(max-width:600px){
+  .domains{gap:10px}
+  .rule{margin-bottom:22px}
+  .brandtext{flex:1 1 auto}
 }
 </style>
 
@@ -371,10 +420,15 @@ img,svg,video{max-width:100%}
     <p class="lede" data-i18n="m.lede"></p>
     <div class="langbar">
       <span class="lb-label" data-i18n="m.langLabel"></span>
-      <div class="seg" id="langSeg" role="group" aria-label="Language">
+      <div class="seg" id="langSeg" role="group" aria-label="Language" data-i18n-aria="m.langLabel">
         <button type="button" data-lang="en">English</button>
         <button type="button" data-lang="ru">Roman Urdu</button>
         <button type="button" data-lang="ur">اردو</button>
+      </div>
+      <div class="seg iconseg" id="themeSeg" role="group" aria-label="Theme" data-i18n-aria="th.label">
+        <button type="button" data-theme-opt="system" aria-label="System" data-i18n-aria="th.system"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="2.8" y="4" width="18.4" height="12.6" rx="2"/><path d="M9.4 20.2h5.2M12 16.6v3.6"/></svg></button>
+        <button type="button" data-theme-opt="light" aria-label="Light" data-i18n-aria="th.light"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="4.1"/><path d="M12 2.6v2.4M12 19v2.4M2.6 12h2.4M19 12h2.4M5.3 5.3l1.7 1.7M17 17l1.7 1.7M18.7 5.3L17 7M7 17l-1.7 1.7"/></svg></button>
+        <button type="button" data-theme-opt="dark" aria-label="Dark" data-i18n-aria="th.dark"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20.3 14.6A8.6 8.6 0 0 1 9.4 3.7a8.7 8.7 0 1 0 10.9 10.9z"/></svg></button>
       </div>
       <span class="mchip" id="countdown" hidden></span>
     </div>
@@ -596,16 +650,20 @@ img,svg,video{max-width:100%}
     </div>
 
     <div class="quizctl">
-      <span class="cl" data-i18n="qz.mode"></span>
-      <div class="seg" id="modeSeg">
-        <button type="button" data-mode="practice" data-i18n="qz.practice"></button>
-        <button type="button" data-mode="mock" data-i18n="qz.mock"></button>
+      <div class="qgroup">
+        <span class="cl" data-i18n="qz.mode"></span>
+        <div class="seg" id="modeSeg">
+          <button type="button" data-mode="practice" data-i18n="qz.practice"></button>
+          <button type="button" data-mode="mock" data-i18n="qz.mock"></button>
+        </div>
       </div>
-      <span class="cl" data-i18n="qz.set"></span>
-      <div class="seg" id="setSeg">
-        <button type="button" data-set="1">Set 1</button>
-        <button type="button" data-set="2">Set 2</button>
-        <button type="button" data-set="3">Set 3</button>
+      <div class="qgroup">
+        <span class="cl" data-i18n="qz.set"></span>
+        <div class="seg" id="setSeg">
+          <button type="button" data-set="1">Set 1</button>
+          <button type="button" data-set="2">Set 2</button>
+          <button type="button" data-set="3">Set 3</button>
+        </div>
       </div>
     </div>
 
@@ -647,6 +705,19 @@ img,svg,video{max-width:100%}
 
 </div>
 
+
+  <nav class="bottombar" id="bottomBar" aria-label="Sections">
+    <button type="button" data-go="overview"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3.4 10.6L12 4l8.6 6.6V20a1 1 0 0 1-1 1h-4.7v-6H9.1v6H4.4a1 1 0 0 1-1-1z"/></svg><span data-i18n="bb.home"></span></button>
+    <button type="button" data-go="domains"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 5.4h16M4 12h16M4 18.6h16"/><circle cx="7.4" cy="5.4" r="1.7" fill="currentColor" stroke="none"/><circle cx="12" cy="12" r="1.7" fill="currentColor" stroke="none"/><circle cx="16.6" cy="18.6" r="1.7" fill="currentColor" stroke="none"/></svg><span data-i18n="bb.domains"></span></button>
+    <button type="button" data-go="method"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 4.4h9.4L19 9v10.6H5z"/><path d="M14.2 4.4V9H19"/><path d="M8.2 13h7M8.2 16.4h4.6"/></svg><span data-i18n="bb.method"></span></button>
+    <button type="button" data-go="courses"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4.5 5.7A2.7 2.7 0 0 1 7.2 3H19v14.3H7.2a2.7 2.7 0 0 0-2.7 2.7z"/><path d="M4.5 5.7V20"/></svg><span data-i18n="bb.learn"></span></button>
+    <button type="button" data-go="cards"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3.5" y="6.6" width="12.4" height="13.9" rx="2.2"/><path d="M8.3 3.5h9.8a2.4 2.4 0 0 1 2.4 2.4v11.4"/></svg><span data-i18n="bb.cards"></span></button>
+    <button type="button" data-go="quiz"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3.5" y="3.5" width="17" height="17" rx="4.2"/><path d="M8.2 12.4l2.7 2.7 5-5.5"/></svg><span data-i18n="bb.tests"></span></button>
+    <button type="button" data-go="plan"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3.6" y="4.8" width="16.8" height="15.6" rx="2.2"/><path d="M3.6 9.6h16.8M8.4 3.2v3.2M15.6 3.2v3.2"/><path d="M7.4 13.6h2.4M14.2 13.6h2.4M7.4 16.9h2.4"/></svg><span data-i18n="bb.plan"></span></button>
+  </nav>
+
+
+
 <script>
 (function(){
 "use strict";
@@ -670,6 +741,13 @@ var T = {
 "tab.courses":["Crash courses","Crash courses","کریش کورسز"],
 "tab.cards":["Flashcards","Flashcards","فلیش کارڈز"],
 "tab.quiz":["Mock tests","Mock tests","موک ٹیسٹ"],
+"th.label":["Theme","Theme","تھیم"],
+"th.system":["System","System","سسٹم"],
+"th.light":["Light","Light","لائٹ"],
+"th.dark":["Dark","Dark","ڈارک"],
+"bb.domains":["Domains","Domains","ڈومینز"],
+"bb.method":["Method","Tareeqa","طریقہ"],
+"bb.plan":["Plan","Plan","پلان"],
 "tab.plan":["Six-day plan","6-din ka plan","۶ دن کا پلان"],
 
 "f.items":["Questions","Sawal","سوالات"],"f.itemsNote":["per set","har set mein","فی سیٹ"],
@@ -684,7 +762,7 @@ var T = {
 "ov.testsH":["What this exam actually tests","Ye exam asal mein kya test karta hai","یہ امتحان اصل میں کیا جانچتا ہے"],
 "ov.testsP1":["It tests <strong>judgment, not recall</strong>. Almost every question is a scenario: a team, a deadline, something the AI produced, and one detail buried in the prose that breaks the delegation. Your job is to spot that detail and pick the <em>smallest sufficient move</em> — not the most impressive one.","Ye <strong>samajh (judgment) test karta hai, ratta nahi</strong>. Taqreeban har sawal ek scenario hai: ek team, ek deadline, AI ne kya banaya, aur prose mein chhipi hui ek detail jo delegation tor deti hai. Aap ka kaam woh detail pakadna aur <em>sabse chhota kaafi move</em> chunna hai — sabse bara nahi.","یہ <strong>فیصلے کی صلاحیت جانچتا ہے، رٹا نہیں</strong>۔ تقریباً ہر سوال ایک منظرنامہ ہے: ایک ٹیم، ایک ڈیڈ لائن، اے آئی نے کیا بنایا، اور عبارت میں چھپی ایک تفصیل جو تفویض کو توڑ دیتی ہے۔ آپ کا کام وہ تفصیل پکڑنا اور <em>سب سے چھوٹا کافی اقدام</em> چننا ہے — سب سے بڑا نہیں۔"],
 "ov.testsP2":["The published blueprint splits the exam into seven domains. <strong>Three of them carry 50% of the marks</strong>, and all three are about the same thing: delegating a task, checking what comes back, and governing what the agent was allowed to do.","Published blueprint exam ko saat domains mein baantta hai. <strong>Teen domains mil kar 50% marks rakhte hain</strong>, aur teenon ek hi cheez ke baare mein hain: kaam delegate karna, jo wapas aaya usay check karna, aur agent ko kis cheez ki ijazat thi usay govern karna.","شائع شدہ بلیو پرنٹ امتحان کو سات ڈومینز میں تقسیم کرتا ہے۔ <strong>تین ڈومینز مل کر ۵۰٪ نمبر رکھتے ہیں</strong>، اور تینوں ایک ہی چیز کے بارے میں ہیں: کام تفویض کرنا، جو واپس آیا اسے جانچنا، اور ایجنٹ کو کس چیز کی اجازت تھی اسے کنٹرول کرنا۔"],
-"ov.sampleH":["Do the official sample early — not the night before.","Official sample exam jaldi dein — aakhri raat nahi."],
+"ov.sampleH":["Do the official sample early — not the night before.","Official sample exam jaldi dein — aakhri raat nahi.","آفیشل سیمپل امتحان جلدی دیں — آخری رات نہیں۔"],
 "ov.sampleB":["The official sample sitting mirrors the real format and does not use an attempt. Take it once in the first two days for a baseline, then again mid-week to see what moved.","Official sample exam bilkul asli format jaisa hai aur attempt count nahi khata. Pehle do din mein ek baar dein (baseline ke liye), phir hafte ke beech dobara — dekhein kya behtar hua.","سرکاری سیمپل امتحان بالکل اصل فارمیٹ جیسا ہے اور کوشش شمار نہیں کرتا۔ پہلے دو دن میں ایک بار دیں (بنیادی جائزے کے لیے)، پھر ہفتے کے وسط میں دوبارہ — دیکھیں کیا بہتر ہوا۔"],
 "ov.langH":["About the languages","Zabaano ke baare mein","زبانوں کے بارے میں"],
 "ov.langP":["The interface, all study notes and every answer explanation switch between English, Roman Urdu and اردو. <strong>Question papers stay in English</strong> — that is the language of the real exam, so practice in it.","Interface, saara study material aur har explanation English, Roman Urdu aur اردو mein switch hoti hai. <strong>Sawal English mein hi rehte hain</strong> — kyunke asli exam bhi English mein hai, to usi mein practice karein.","انٹرفیس، سارا مطالعہ اور ہر وضاحت انگریزی، رومن اردو اور اردو میں بدل جاتی ہے۔ <strong>سوالات انگریزی میں ہی رہتے ہیں</strong> — کیونکہ اصل امتحان بھی انگریزی میں ہے، تو اسی میں مشق کریں۔"],
@@ -812,6 +890,10 @@ var T = {
 "qz.domainTitle":["Domain","Domain","ڈومین"],
 "qz.scoreTitle":["Score","Score","اسکور"],
 
+"bb.home":["Home","Home","ہوم"],
+"bb.learn":["Learn","Seekhein","سیکھیں"],
+"bb.cards":["Cards","Cards","کارڈز"],
+"bb.tests":["Tests","Tests","ٹیسٹ"],
 "pl.h":["Six days, Mon 5 → Sun 11 October","Chhe din, Peer 5 → Itwaar 11 October","چھ دن، پیر ۵ تا اتوار ۱۱ اکتوبر"],
 "pl.p":["About 30 hours in total, roughly 5 hours a day: all ten crash courses, three full 60-question mock sets, and a review pass. The hours below assume you are starting from zero and include pausing for notes. They are planning estimates — after the first course you will know your own pace, so stretch or squeeze the rest to match it. Study the heavy domains while your energy is fresh, and put nothing new in front of yourself after Friday.","Kul milakar taqreeban 30 ghante, rozana taqreeban 5: saare das crash courses, teen poore 60-sawal mock sets, aur ek review. Neeche diye ghante farz karte hain ke aap bilkul zero se shuru kar rahe hain aur is mein notes banane ka waqt shamil hai. Ye andaze hain — pehla course dekhne ke baad apni raftaar pata chal jayegi, baqi us ke mutabiq adjust karein. Bhaari domains tab padhein jab energy taaza ho, aur Jumerat ke baad kuch naya na rakhein.","کل تقریباً ۳۰ گھنٹے، روزانہ تقریباً ۵: سارے دس کورس، تین مکمل موک سیٹ، اور ایک جائزہ۔ نیچے دیے گھنٹے فرض کرتے ہیں کہ آپ بالکل صفر سے شروع کر رہے ہیں اور اس میں نوٹس بنانے کا وقت شامل ہے۔ یہ اندازے ہیں — پہلا کورس دیکھنے کے بعد اپنی رفتار پتا چل جائے گی۔ بھاری ڈومینز تب پڑھیں جب توانائی تازہ ہو۔"],
 "pl.d1n":["Mon 5 Oct","Peer 5 Oct","پیر ۵ اکتوبر"],
@@ -1202,6 +1284,12 @@ function applyI18n(){
     var v = t(el.getAttribute("data-i18n"));
     if(v) el.innerHTML = v;
   }
+  var labelled = document.querySelectorAll("[data-i18n-aria]");
+  for(var j=0;j<labelled.length;j++){
+    var la = labelled[j];
+    var lv = t(la.getAttribute("data-i18n-aria"));
+    if(lv){ la.setAttribute("aria-label", lv); la.setAttribute("title", lv); }
+  }
   renderCourses();
   renderCards();
   renderQuiz();
@@ -1225,6 +1313,7 @@ function showTab(id){
   });
   panels.forEach(function(p){ p.hidden = p.getAttribute("data-panel") !== id; });
   if(found) write("tab", id);
+  syncNav(found ? id : "");
   return found;
 }
 tabBtns.forEach(function(b){
@@ -1420,7 +1509,7 @@ function renderPractice(){
   if(!bank.length){ host.innerHTML = '<div class="empty">…</div>'; return; }
 
   var bar = document.createElement("div");
-  bar.className = "quizctl";
+  bar.className = "quizctl qzbar";
   bar.style.marginBottom = "14px";
   bar.innerHTML =
     '<span class="stat">'+t("qz.answered")+' <b data-pd>0</b> / <b>'+bank.length+'</b></span>'+
@@ -1766,9 +1855,83 @@ function bindChecklist(){
 loadQuiz();
 bindChecklist();
 
+/* ---- theme: system (default), light, dark ---- */
+var THEMES = ["system","light","dark"];
+var theme = "system";
+
+function syncChromeColor(){
+  var metas = document.querySelectorAll("meta[data-tc]");
+  if(metas.length !== 2) return;
+  var lightMeta = metas[0], darkMeta = metas[1];
+  if(lightMeta.getAttribute("data-tc") !== "light"){ lightMeta = metas[1]; darkMeta = metas[0]; }
+  if(theme === "light"){
+    lightMeta.setAttribute("media","all");
+    darkMeta.setAttribute("media","not all");
+  } else if(theme === "dark"){
+    darkMeta.setAttribute("media","all");
+    lightMeta.setAttribute("media","not all");
+  } else {
+    lightMeta.setAttribute("media","(prefers-color-scheme: light)");
+    darkMeta.setAttribute("media","(prefers-color-scheme: dark)");
+  }
+}
+
+function setTheme(v){
+  theme = THEMES.indexOf(v) > -1 ? v : "system";
+  var root = document.documentElement;
+  if(theme === "system") root.removeAttribute("data-theme");
+  else root.setAttribute("data-theme", theme);
+  if(theme === "system") wipe("theme"); else write("theme", theme);
+  var segs = document.querySelectorAll("#themeSeg button");
+  for(var i=0;i<segs.length;i++){
+    segs[i].setAttribute("aria-pressed",
+      segs[i].getAttribute("data-theme-opt") === theme ? "true" : "false");
+  }
+  syncChromeColor();
+}
+
+var savedTheme = read("theme");
+if(savedTheme && THEMES.indexOf(savedTheme) > -1) theme = savedTheme;
+setTheme(theme);
+
+document.querySelectorAll("#themeSeg button").forEach(function(b){
+  b.addEventListener("click", function(){ setTheme(b.getAttribute("data-theme-opt")); });
+});
+
+/* keep "system" honest when the OS flips under us */
+if(window.matchMedia){
+  var mq = window.matchMedia("(prefers-color-scheme: dark)");
+  var onFlip = function(){ if(theme === "system") syncChromeColor(); };
+  if(mq.addEventListener) mq.addEventListener("change", onFlip);
+  else if(mq.addListener) mq.addListener(onFlip);
+}
+
 var savedLang = read("lang");
 if(savedLang && LANGS.indexOf(savedLang) > -1) lang = savedLang;
 var savedTab = read("tab");
+
+function syncNav(id){
+  var bar = document.getElementById("bottomBar");
+  if(!bar) return;
+  var btns = bar.querySelectorAll("button");
+  for(var i=0;i<btns.length;i++){
+    var b = btns[i];
+    b.setAttribute("aria-current", b.getAttribute("data-go") === id ? "true" : "false");
+  }
+}
+(function wireNav(){
+  var bar = document.getElementById("bottomBar");
+  if(!bar) return;
+  var btns = bar.querySelectorAll("button");
+  for(var i=0;i<btns.length;i++){
+    (function(b){
+      b.addEventListener("click", function(){
+        showTab(b.getAttribute("data-go"));
+        window.scrollTo(0,0);
+      });
+    })(btns[i]);
+  }
+})();
 
 syncSegs();
 setLang(lang);                 /* applies i18n + renders courses/cards/quiz */
