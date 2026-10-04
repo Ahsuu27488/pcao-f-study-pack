@@ -7,6 +7,12 @@
 <meta name="color-scheme" content="light dark">
 <meta name="theme-color" content="#F3F6F9" media="(prefers-color-scheme: light)">
 <meta name="theme-color" content="#0C131B" media="(prefers-color-scheme: dark)">
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg%20xmlns%3D'http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg'%20viewBox%3D'0%200%2032%2032'%3E%3Crect%20width%3D'32'%20height%3D'32'%20rx%3D'7'%20fill%3D'%231B5FB0'%2F%3E%3Cpath%20d%3D'M9%2016.9l4.7%204.7L23.3%2011'%20fill%3D'none'%20stroke%3D'%23fff'%20stroke-width%3D'3'%20stroke-linecap%3D'round'%20stroke-linejoin%3D'round'%2F%3E%3C%2Fsvg%3E">
+<meta property="og:type" content="website">
+<meta property="og:title" content="PCAO-F Study Pack">
+<meta property="og:description" content="Seven domains, the ten official crash courses, 180 practice questions and a timed mock test — in English, Roman Urdu and Urdu.">
+<meta property="og:url" content="https://ahsuu27488.github.io/pcao-f-study-pack/">
+<meta name="twitter:card" content="summary">
 <title>PCAO-F Study Pack</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -42,6 +48,7 @@
   --trap-soft:#F8E2DE;
   --shadow:0 1px 2px rgba(20,29,38,.06),0 5px 16px rgba(20,29,38,.055);
   --radius:10px;
+  --on-accent:#FFFFFF;
   --font-display:"IBM Plex Serif",Georgia,"Times New Roman",serif;
   --font-body:"IBM Plex Sans",-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,sans-serif;
   --font-mono:"IBM Plex Mono",ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;
@@ -53,7 +60,7 @@
     --fg:#E2E9F0; --muted:#8EA1B1; --line:#283746; --line-strong:#3B4E5F;
     --accent:#76ABEE; --accent-ink:#A8C8F4; --accent-soft:#16283C;
     --ok:#5FBF95; --ok-soft:#122A21; --warn:#D9A54C; --warn-soft:#2B2314;
-    --trap:#E8857B; --trap-soft:#2F1A18;
+    --trap:#E8857B; --trap-soft:#2F1A18; --on-accent:#08111A;
     --shadow:0 1px 2px rgba(0,0,0,.42),0 5px 16px rgba(0,0,0,.32);
     color-scheme:dark;
   }
@@ -63,7 +70,7 @@
   --fg:#E2E9F0; --muted:#8EA1B1; --line:#283746; --line-strong:#3B4E5F;
   --accent:#76ABEE; --accent-ink:#A8C8F4; --accent-soft:#16283C;
   --ok:#5FBF95; --ok-soft:#122A21; --warn:#D9A54C; --warn-soft:#2B2314;
-  --trap:#E8857B; --trap-soft:#2F1A18;
+  --trap:#E8857B; --trap-soft:#2F1A18; --on-accent:#08111A;
   --shadow:0 1px 2px rgba(0,0,0,.42),0 5px 16px rgba(0,0,0,.32);
   color-scheme:dark;
 }
@@ -100,7 +107,29 @@ a{color:var(--accent);text-underline-offset:2px}
 a:focus-visible,button:focus-visible,input:focus-visible{outline:2px solid var(--accent);outline-offset:2px;border-radius:4px}
 
 /* ---------- masthead ---------- */
-.masthead{padding-block:32px 18px;display:flex;flex-direction:column;gap:14px}
+.masthead{padding-block:36px 20px;display:flex;flex-direction:column;gap:16px}
+.brand{display:flex;align-items:center;gap:14px;min-width:0}
+.mark{flex:none;width:46px;height:46px;border-radius:13px;background:var(--accent);
+  color:var(--on-accent);display:grid;place-items:center;box-shadow:var(--shadow)}
+.mark svg{width:26px;height:26px;display:block}
+.brandtext{display:flex;flex-direction:column;gap:3px;min-width:0}
+.brandtext .eyebrow{margin-bottom:1px}
+.mchip{display:inline-flex;align-items:center;gap:7px;font-family:var(--font-mono);
+  font-size:.7rem;letter-spacing:.05em;padding:4px 12px;border-radius:99px;
+  background:var(--accent-soft);color:var(--accent-ink);white-space:nowrap;
+  font-variant-numeric:tabular-nums}
+.mchip::before{content:"";width:6px;height:6px;border-radius:50%;background:var(--accent);flex:none}
+.langbar .mchip{margin-inline-start:auto}
+/* the hairline under the masthead opens with an accent stroke */
+.masthead + .rule{height:2px;border-radius:1px;
+  background:linear-gradient(90deg,var(--accent) 0,var(--accent) 78px,var(--line) 78px)}
+:root[dir="rtl"] .masthead + .rule{transform:scaleX(-1)}
+@media(max-width:600px){
+  .masthead{padding-block:24px 16px;gap:14px}
+  .mark{width:40px;height:40px;border-radius:11px}
+  .mark svg{width:23px;height:23px}
+  .langbar .mchip{margin-inline-start:0}
+}
 .eyebrow{font-family:var(--font-mono);font-size:.7rem;text-transform:uppercase;letter-spacing:.13em;color:var(--muted)}
 .masthead .lede{color:var(--muted);font-size:.98rem;max-width:62ch}
 .rule{height:1px;background:var(--line);border:0;margin:0}
@@ -115,9 +144,7 @@ a:focus-visible,button:focus-visible,input:focus-visible{outline:2px solid var(-
 }
 .seg button:last-child{border-inline-end:0}
 .seg button:hover{background:var(--surface-2);color:var(--fg)}
-.seg button[aria-pressed="true"]{background:var(--accent);color:#fff;font-weight:500}
-:root[data-theme="dark"] .seg button[aria-pressed="true"]{color:#08111A}
-@media (prefers-color-scheme:dark){:root:not([data-theme="light"]) .seg button[aria-pressed="true"]{color:#08111A}}
+.seg button[aria-pressed="true"]{background:var(--accent);color:var(--on-accent);font-weight:500}
 
 /* ---------- tab rail ---------- */
 .tabrail{position:sticky;top:env(safe-area-inset-top,0px);z-index:20;background:var(--bg);padding-block:10px 0;margin-bottom:22px}
@@ -208,7 +235,7 @@ section[data-panel][hidden]{display:none}
 .fc-hint{font-family:var(--font-mono);font-size:.64rem;text-transform:uppercase;letter-spacing:.1em;color:var(--accent-ink)}
 .fc-foot{display:flex;justify-content:flex-end;padding:0 11px 11px}
 .fc-know{appearance:none;border:1px solid var(--line-strong);background:var(--surface);color:var(--muted);font-family:inherit;font-size:.73rem;border-radius:20px;padding:3px 12px;cursor:pointer}
-.fc.known .fc-know{background:var(--ok);border-color:var(--ok);color:#fff}
+.fc.known .fc-know{background:var(--ok);border-color:var(--ok);color:var(--on-accent)}
 .fc-progress{font-family:var(--font-mono);font-size:.75rem;color:var(--muted)}
 
 /* ---------- quiz ---------- */
@@ -218,10 +245,8 @@ section[data-panel][hidden]{display:none}
 .stat b{color:var(--fg);font-weight:500}
 .btn{appearance:none;border:1px solid var(--line-strong);background:var(--surface);color:var(--fg);font-family:inherit;font-size:.79rem;border-radius:20px;padding:5px 15px;cursor:pointer}
 .btn:hover{border-color:var(--accent);color:var(--accent-ink)}
-.btn.primary{background:var(--accent);border-color:var(--accent);color:#fff}
-.btn.primary:hover{opacity:.9;color:#fff}
-:root[data-theme="dark"] .btn.primary{color:#08111A}
-@media (prefers-color-scheme:dark){:root:not([data-theme="light"]) .btn.primary{color:#08111A}}
+.btn.primary{background:var(--accent);border-color:var(--accent);color:var(--on-accent)}
+.btn.primary:hover{opacity:.9;color:var(--on-accent)}
 .btn.danger{border-color:var(--trap);color:var(--trap)}
 
 .q{border:1px solid var(--line);border-radius:var(--radius);background:var(--surface);padding:16px 18px;display:flex;flex-direction:column;gap:12px;min-width:0}
@@ -336,8 +361,13 @@ img,svg,video{max-width:100%}
 <div class="wrap">
 
   <header class="masthead">
-    <span class="eyebrow" data-i18n="m.eyebrow"></span>
-    <h1 data-i18n="m.title"></h1>
+    <div class="brand">
+      <span class="mark" aria-hidden="true"><svg viewBox="0 0 32 32" fill="none"><path d="M9 16.9l4.7 4.7L23.3 11" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+      <div class="brandtext">
+        <span class="eyebrow" data-i18n="m.eyebrow"></span>
+        <h1 data-i18n="m.title"></h1>
+      </div>
+    </div>
     <p class="lede" data-i18n="m.lede"></p>
     <div class="langbar">
       <span class="lb-label" data-i18n="m.langLabel"></span>
@@ -346,6 +376,7 @@ img,svg,video{max-width:100%}
         <button type="button" data-lang="ru">Roman Urdu</button>
         <button type="button" data-lang="ur">اردو</button>
       </div>
+      <span class="mchip" id="countdown" hidden></span>
     </div>
   </header>
   <hr class="rule">
@@ -627,6 +658,10 @@ var T = {
 "m.eyebrow":["GIAIC Final · Panaversity Certified Associate — Foundations","GIAIC Final · Panaversity Certified Associate — Foundations","جی آئی اے آئی سی فائنل · پناورسٹی سرٹیفائیڈ ایسوسی ایٹ — فاؤنڈیشنز"],
 "m.title":["PCAO-F Study Pack","PCAO-F Study Pack","PCAO-F اسٹڈی پیک"],
 "m.lede":["Seven domains, ten crash courses, one week. Three full 60-question sets in practice and timed mock mode.","Saat domains, das crash courses, ek hafta. Teen poore 60-sawal ke sets — practice aur timed mock mode mein.","سات ڈومینز، دس کریش کورسز، ایک ہفتہ۔ تین مکمل ۶۰ سوالی سیٹ — پریکٹس اور ٹائمڈ موک موڈ میں۔"],
+
+"m.cdToday":["Exam day is today","Aaj exam hai","آج امتحان ہے"],
+"m.cd1":["1 day to the exam","Exam mein 1 din baaki","امتحان میں ۱ دن باقی"],
+"m.cdN":["{n} days to the exam","Exam mein {n} din baaki","امتحان میں {n} دن باقی"],
 "m.langLabel":["Language","Zubaan","زبان"],
 
 "tab.overview":["Overview","Khulasa","خلاصہ"],
@@ -1143,6 +1178,23 @@ var SETS = {
 /* =========================================================
    5. I18N APPLY
    ========================================================= */
+function renderCountdown(){
+  var el = document.getElementById("countdown");
+  if(!el) return;
+  var now  = new Date();
+  var from = new Date(now.getFullYear(), now.getMonth(), now.getDate());
+  var exam = new Date(2026, 9, 11);              /* 11 October 2026 */
+  var days = Math.round((exam - from) / 86400000);
+  if(days < 0){ el.hidden = true; return; }      /* the exam has been sat */
+  el.hidden = false;
+  var key = days === 0 ? "m.cdToday" : (days === 1 ? "m.cd1" : "m.cdN");
+  var n = String(days);
+  if(lang === "ur"){          /* 7 → ۷, so it matches the Urdu date and plan chips */
+    n = n.replace(/[0-9]/g, function(d){ return "۰۱۲۳۴۵۶۷۸۹".charAt(+d); });
+  }
+  el.textContent = t(key).replace("{n}", n);
+}
+
 function applyI18n(){
   var nodes = document.querySelectorAll("[data-i18n]");
   for(var i=0;i<nodes.length;i++){
@@ -1153,6 +1205,7 @@ function applyI18n(){
   renderCourses();
   renderCards();
   renderQuiz();
+  renderCountdown();
 }
 
 /* =========================================================
